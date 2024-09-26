@@ -9,7 +9,7 @@ public class InventarioDAO {
     private Connection connection;
 
     public InventarioDAO() {
-        this.connection = Mysql.getConnection(); // Conexão com o banco de dados
+        this.connection = Mysql.getConnection();
     }
 
     public void adicionarItemAoInventario(int idItem, int idJogo) {
@@ -17,7 +17,7 @@ public class InventarioDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idItem);
             stmt.setInt(2, idJogo);
-            stmt.executeUpdate(); // Executa a inserção
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +52,7 @@ public class InventarioDAO {
         String sql = "DELETE FROM Inventario WHERE id_jogo = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idJogo);
-            stmt.executeUpdate(); // Executa a remoção dos itens
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

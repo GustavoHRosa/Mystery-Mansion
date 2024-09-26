@@ -17,7 +17,7 @@ public class Game {
     }
 
     public void saveGame() {
-        String sql = "INSERT INTO Jogo_salvo (cena_atual) VALUES (?)"; // Nome correto da tabela
+        String sql = "INSERT INTO Jogo_salvo (cena_atual) VALUES (?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, cenaAtualId);
             stmt.executeUpdate();
@@ -28,7 +28,7 @@ public class Game {
     }
 
     public void loadGame() {
-        String sql = "SELECT cena_atual FROM Jogo_salvo ORDER BY id DESC LIMIT 1"; // Nome correto da tabela
+        String sql = "SELECT cena_atual FROM Jogo_salvo ORDER BY id DESC LIMIT 1";
         try (PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             if (rs.next()) {
@@ -40,8 +40,9 @@ public class Game {
         }
     }
 
+    // Comando Para restaurar cena
     public void restartGame() {
-        cenaAtualId = 4; // Reinicia para a cena inicial
+        cenaAtualId = 4;
         System.out.println("O jogo foi reiniciado!");
     }
 

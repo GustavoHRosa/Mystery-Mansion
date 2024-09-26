@@ -5,30 +5,28 @@ public class ItemService {
     private InventarioDAO inventarioDAO;
 
     public ItemService() {
-        this.itemDAO = new ItemDAO(); // Inicializa o DAO de itens
-        this.inventarioDAO = new InventarioDAO(); // Inicializa o DAO de inventário
+        this.itemDAO = new ItemDAO();
+        this.inventarioDAO = new InventarioDAO();
     }
 
     public boolean coletarItem(String itemNome, int idJogo) {
         Item item = itemDAO.getItemByNome(itemNome);
         if (item != null && item.isPodeSerColetado()) {
-            // Adiciona o item ao inventário
             inventarioDAO.adicionarItemAoInventario(item.getId(), idJogo);
             System.out.println("Adicionando " + itemNome + " ao inventário.");
-            return true; // Retorna true se coletado com sucesso
+            return true;
         }
-        return false; // Retorna false se o item não foi encontrado ou não pode ser coletado
+        return false;
     }
 
     public String checkItem(String itemNome) {
         Item item = itemDAO.getItemByNome(itemNome);
         if (item != null) {
-            return item.getDescricao(); // Retorna a descrição do item
+            return item.getDescricao();
         }
         return "Item não encontrado.";
     }
 
-    // Novo método para listar itens do inventário
     public List<Item> listarInventario(int idJogo) {
         return inventarioDAO.getItensDoInventario(idJogo);
     }

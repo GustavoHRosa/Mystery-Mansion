@@ -8,10 +8,10 @@ public class Main {
         ComandoService comandoService = new ComandoService();
         SaveDAO saveDAO = new SaveDAO();
         ItemService itemService = new ItemService();
-        InventarioDAO inventarioDAO = new InventarioDAO(); // Inicializa o DAO de inventário
+        InventarioDAO inventarioDAO = new InventarioDAO();
 
-        int cenaAtualId = 4; // ID da cena inicial
-        int idJogo = 1; // ID do jogo atual
+        int cenaAtualId = 10;
+        int idJogo = 1;
 
         while (true) {
             Cena cenaAtual = cenaDAO.getCenaById(cenaAtualId);
@@ -22,27 +22,27 @@ public class Main {
 
             System.out.println(cenaAtual.getDescricao());
 
-            // Obter comandos disponíveis da cena atual
+            // comandos cena atual
             List<String> comandos = cenaDAO.getComandosByCenaId(cenaAtualId);
 
             System.out.print("Digite seu comando: ");
             String comando = scanner.nextLine().trim();
 
-            // Verificar o comando HELP
-            if (comando.equalsIgnoreCase("HELP")) {
+            // Comando help
+            if (comando.equalsIgnoreCase("help")) {
                 List<String> comandosDisponiveis = comandoService.getComandosDisponiveis();
                 System.out.println("Comandos disponíveis: " + comandosDisponiveis);
                 continue;
             }
 
-            // Verificar o comando SAVE
-            if (comando.equalsIgnoreCase("SAVE")) {
+            // Comando save
+            if (comando.equalsIgnoreCase("save")) {
                 saveDAO.saveGame(cenaAtualId);
                 continue;
             }
 
-            // Verificar o comando GET
-            if (comando.startsWith("GET ")) {
+            // Comando get
+            if (comando.startsWith("get ")) {
                 String itemNome = comando.substring(4).trim();
                 boolean coletado = itemService.coletarItem(itemNome, idJogo);
                 if (!coletado) {
@@ -51,16 +51,16 @@ public class Main {
                 continue;
             }
 
-            // Verificar o comando CHECK
-            if (comando.startsWith("CHECK ")) {
+            // Comando check
+            if (comando.startsWith("check ")) {
                 String itemNome = comando.substring(6).trim(); // Obter o nome do item após "CHECK "
                 String descricao = itemService.checkItem(itemNome);
                 System.out.println(descricao); // Exibir a descrição do item
                 continue;
             }
 
-            // Verificar o comando INVENTORY
-            if (comando.equalsIgnoreCase("INVENTORY")) {
+            // Comando inventario
+            if (comando.equalsIgnoreCase("inventario")) {
                 List<Item> itensInventario = itemService.listarInventario(idJogo);
                 if (itensInventario.isEmpty()) {
                     System.out.println("Seu inventário está vazio.");
@@ -73,15 +73,15 @@ public class Main {
                 continue;
             }
 
-            // Verificar o comando RESTART
-            if (comando.equalsIgnoreCase("RESTART")) {
-                cenaAtualId = 4; // Redefine a cena atual para a cena inicial
-                inventarioDAO.limparInventario(idJogo); // Limpa o inventário do jogador
+            // Comando restart
+            if (comando.equalsIgnoreCase("restart")) {
+                cenaAtualId = 4;
+                inventarioDAO.limparInventario(idJogo);
                 System.out.println("O jogo foi reiniciado. Você está de volta à cena inicial.");
                 continue;
             }
 
-            // Verificar se o comando está disponível
+            // Ver se o comando está disponível
             if (comandos.contains(comando)) {
                 cenaAtualId = cenaAtual.getIdProximaCena();
             } else {

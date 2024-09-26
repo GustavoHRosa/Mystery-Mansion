@@ -84,7 +84,21 @@ UPDATE Item SET id_cena = 7 WHERE nome = 'ESTANTE';
 UPDATE Item SET id_cena = 8 WHERE nome = 'CHAVE';   -- CHAVE na cena 5
 UPDATE Item SET id_cena = 9 WHERE nome = 'TESOURO';  -- TESOURO na cena 6
 
+DELETE FROM Cena;
 
+
+INSERT INTO Cena (descricao, comando_correto, id_proxima_cena) VALUES
+('Você está parado em frente à imponente Mansão Ravenwood. O portão de ferro está enferrujado e entreaberto. O vento sopra, e as folhas mortas voam pelo pátio. Algo sobre o lugar faz seus pelos arrepiarem.', 'use portao', NULL),
+('Você se encontra no hall da mansão. Há uma grande escadaria à sua frente, mas uma porta ao lado parece levar a outro cômodo. Tudo está empoeirado, e o silêncio é ensurdecedor.', 'use porta', NULL),
+('A sala de estar está cheia de móveis antigos cobertos por panos. Há uma lareira apagada no canto e, ao lado dela, uma chave brilhando na penumbra. Parece importante.', 'pegue chave', NULL),
+('Você está em um corredor longo e escuro. Há uma porta trancada no fim do corredor. Parece que você precisará de algo para abri-la.', 'use chave', NULL),
+('Você entra na antiga biblioteca da mansão. As prateleiras estão cheias de livros empoeirados. Há uma estante que parece diferente das outras.', 'examine estante', NULL),
+('Atrás da estante, uma passagem secreta se revela. Ela leva para o porão da mansão. Ao descer, você encontra uma lanterna apagada jogada no chão.', 'pegue lanterna', NULL),
+('O porão é frio e escuro. Você mal consegue ver à sua frente. Precisa de luz para continuar explorando.', 'use lanterna', NULL),
+('No canto do porão, você encontra um cofre antigo. Está trancado, mas há marcas no chão sugerindo que foi mexido recentemente.', 'use livro', NULL),
+('O cofre se abre lentamente, revelando o tão falado tesouro dos Ravenwood. Dentro, há joias, ouro e uma carta. A carta revela que a família Ravenwood
+ fugiu para escapar de uma perseguição injusta, deixando o tesouro para trás como isca.', 'pegue tesouro', NULL),
+('Você está de volta à entrada da mansão. Com o tesouro nas mãos e a história revelada, você sente o peso da vitória, mas também o mistério sombrio que ainda cerca os Ravenwood.', 'use portao', NULL);
 
 
 

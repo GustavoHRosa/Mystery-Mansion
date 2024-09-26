@@ -5,7 +5,7 @@ public class Item {
     private boolean podeSerColetado;
     private int idCena;
 
-    // Getters e Setters
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

@@ -6,7 +6,7 @@ public class SaveDAO {
     private Connection connection;
 
     public SaveDAO() {
-        this.connection = Mysql.getConnection(); // Conexão com o banco de dados
+        this.connection = Mysql.getConnection();
     }
 
     public void saveGame(int cenaAtualId) {

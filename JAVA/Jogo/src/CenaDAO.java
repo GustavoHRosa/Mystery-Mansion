@@ -9,7 +9,7 @@ public class CenaDAO {
     private Connection connection;
 
     public CenaDAO() {
-        this.connection = Mysql.getConnection(); // Conexão com o banco de dados
+        this.connection = Mysql.getConnection(); // Banco de dados
     }
 
     public Cena getCenaById(int id) {

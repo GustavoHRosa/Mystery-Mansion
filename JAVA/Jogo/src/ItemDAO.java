@@ -7,7 +7,7 @@ public class ItemDAO {
     private Connection connection;
 
     public ItemDAO() {
-        this.connection = Mysql.getConnection(); // Conexão com o banco de dados
+        this.connection = Mysql.getConnection();
     }
 
     public Item getItemByNome(String nome) {
@@ -19,7 +19,7 @@ public class ItemDAO {
                 Item item = new Item();
                 item.setId(rs.getInt("id"));
                 item.setNome(rs.getString("nome"));
-                item.setDescricao(rs.getString("descricao")); // Aqui estamos pegando a descrição
+                item.setDescricao(rs.getString("descricao"));
                 item.setPodeSerColetado(rs.getBoolean("pode_ser_coletado"));
                 item.setIdCena(rs.getInt("id_cena"));
                 return item;
@@ -27,6 +27,6 @@ public class ItemDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; // Retorna null se não encontrar o item
+        return null;
     }
 }
